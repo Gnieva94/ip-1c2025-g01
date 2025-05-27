@@ -1,6 +1,6 @@
 {% extends 'header.html' %} {% block content %}
 <main>
-    <h1 class="text-center">Buscador de Pokemon</h1>
+    <h1 class="text-center">Buscador de Digimones</h1>
 
     <div class="d-flex justify-content-center" style="margin-bottom: 1%">
         <!-- Buscador del sitio -->
@@ -37,7 +37,11 @@
         {% else %} {% for img in images %}
         <div class="col">
             <!-- evaluar si la imagen pertenece al tipo fuego, agua o planta -->
-            <div class="card border-success mb-3 ms-5" style="max-width: 540px; ">
+            <div class="card {% if img.types.0 == 'fire' %}border-danger
+    {% elif img.types.0 == 'water' %}border-primary
+    {% elif img.types.0 == 'grass' %}border-success
+    {% else %}border-secondary
+    {% endif %} mb-3 ms-5" style="max-width: 540px; ">
                  <div class="row g-0">
                      <div class="col-md-4">
                          <img src="{{ img.image }}" class="card-img-top"alt="imagen">
@@ -48,8 +52,9 @@
                             <h3 class="card-title">{{ img.name }} #{{ img.id }} <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="Master Ball"></h3>
                             <p class="card-text">
                                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                    {% for poketype in img.types %}
-                                    <strong><em>{{poketype}}</em></strong>
+                                    {% for poketype in img.url_types %}
+                                    <!-- <strong><em>{{poketype}}</em></strong> -->
+                                     <img src={{poketype}} alt="Tipo del pokemon">
                                     {% endfor %} 
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
