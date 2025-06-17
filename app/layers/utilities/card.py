@@ -8,6 +8,7 @@ class Card:
         self.user = user  # Usuario asociado (si corresponde)
         self.id = id  # ID único (si corresponde)
         self.types = types or []  # Asegura que sea una lista por defecto
+        self.url_types = []
 
     def __str__(self):
         return (f'name: {self.name}, height: {self.height}, weight: {self.weight}, '
