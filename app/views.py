@@ -57,7 +57,10 @@ def saveFavourite(request):
 
 @login_required
 def deleteFavourite(request):
-    pass
+    #pass
+    borrado = services.deleteFavourite(request)
+    print("borrado" if borrado else "no borrado")
+    return redirect('favoritos')
 
 @login_required
 def exit(request):
