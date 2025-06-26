@@ -96,6 +96,7 @@
                         <div class="card-footer text-center">
                             <form method="post" action="{% url 'agregar-favorito' %}">
                                 {% csrf_token %}
+                                <input type="hidden" name="id" value="{{ img.id }}">
                                 <input type="hidden" name="name" value="{{ img.name }}">
                                 <input type="hidden" name="height" value="{{ img.height }}">
                                 <input type="hidden" name="weight" value="{{ img.weight }}">

@@ -7,8 +7,8 @@ def fromRequestIntoCard(poke_data):
     card = Card(
         id=poke_data.get('id'),
         name=poke_data.get('name'),
-        height=poke_data.get('height'),
-        weight=poke_data.get('weight'),
+        height=str(poke_data.get('height')),
+        weight=str(poke_data.get('weight')),
         base=poke_data.get('base_experience'),
         image=safe_get(poke_data, 'sprites', 'other', 'official-artwork', 'front_default'),
         types=getTypes(poke_data)
