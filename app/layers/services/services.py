@@ -56,15 +56,17 @@ def saveFavourite(request):
 # usados desde el template 'favourites.html'
 def getAllFavourites(request):
     if not request.user.is_authenticated:
+        print("no entro fav")
         return []
     else:
+        print("entro fav")
         user = get_user(request)
 
-        favourite_list = [] # buscamos desde el repositories.py TODOS Los favoritos del usuario (variable 'user').
+        favourite_list = repositories.get_all_favourites(user) # buscamos desde el repositories.py TODOS Los favoritos del usuario (variable 'user').
         mapped_favourites = []
 
         for favourite in favourite_list:
-            card = '' # convertimos cada favorito en una Card, y lo almacenamos en el listado de mapped_favourites que luego se retorna.
+            card = translator.fromRepositoryIntoCard(favourite) # convertimos cada favorito en una Card, y lo almacenamos en el listado de mapped_favourites que luego se retorna.
             mapped_favourites.append(card)
 
         return mapped_favourites
