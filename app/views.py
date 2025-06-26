@@ -13,7 +13,7 @@ def home(request):
     
     images = services.getAllImages()
     #print(images)
-    favourite_list = []
+    favourite_list = services.getAllFavourites(request)
 
     return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
 
@@ -36,7 +36,7 @@ def filter_by_type(request):
 
     if type != '':
         images = services.filterByType(type) # debe traer un listado filtrado de imágenes, segun si es o contiene ese tipo.
-        favourite_list = []
+        favourite_list = services.getAllFavourites(request)
 
         return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
     else:
@@ -51,7 +51,9 @@ def getAllFavouritesByUser(request):
 
 @login_required
 def saveFavourite(request):
-    pass
+    #pass
+    services.saveFavourite(request)
+    return redirect('home')
 
 @login_required
 def deleteFavourite(request):
@@ -60,4 +62,4 @@ def deleteFavourite(request):
 @login_required
 def exit(request):
     logout(request)
-    return redirect('home')
+    return redirect('index-page')
